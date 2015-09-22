@@ -3,26 +3,14 @@
  */
 {
     //Required. Inputs the module expects.
-    "inputs": [
-        //e.g.
-        /*
-        {
-            "id": "from",
-            "title":"From",
-            "type":"string"
-        }
-        */
-    ],
+    "inputs": [],
     //Required. Outputs the module emits.
     "outputs": [
-      //e.g.
-      /*
         {
-            "id": "from",
-            "title":"From",
-            "type":"array"
+            "id": "headlines",
+            "title":"Headlines",
+            "type":"string"
         }
-      */
     ],
     "title": "espn_headlines" /* Required.A display name for the module */
 }

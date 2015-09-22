@@ -1,3 +1,6 @@
+// Imports
+var request = require('request');
+
 module.exports = {
     /**
      * The main entry point for the Dexter module
@@ -6,8 +9,17 @@ module.exports = {
      * @param {AppData} dexter Container for all data used in this workflow.
      */
     run: function(step, dexter) {
-        var results = { foo: 'bar' };
-        //Call this.complete with the module's output.  If there's an error, call this.fail(message) instead.
-        this.complete(results);
+        var self = this;
+        request('http://samsandberg.com/espn/headlines.json', function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                var data = JSON.parse(body);
+                var headlines = data.headlines;
+                var headlinesStr = "";
+                for (var i in headlines) {
+                    headlinesStr += headlines[i] + "\n";
+                }
+                self.complete({headlines: headlinesStr});
+            }
+        });
     }
 };
